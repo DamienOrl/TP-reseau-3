@@ -99,11 +99,11 @@ __Afin que les deux clients puissent avoir la même passerelle, on pourrait les 
 
 # IV. Lab Final
 
-Elle ressemble à ça: <img src="Captures/Infra finale.png" />
+Il ressemble à ça: <img src="Captures/Infra finale.png" />
 
 ### Les différentes adresses IP:
 
-Hosts | `10.1.1.0/24` | `10.2.2.0/24` | `10.3.100.0/30` | `10.3.100.4/30` | `10.3.100.8/30` | `10.3.104.12/30`
+Hosts | `10.1.1.0/24` | `10.2.2.0/24` | `10.3.100.0/30` | `10.3.100.4/30` | `10.3.100.8/30` | `10.3.100.12/30`
 --- | --- | --- | --- | --- | ---
 `server1.lab4.tp3` | `10.1.1.1/24` | X | X | X | X | X
 `server2.lab4.tp3` | `10.1.1.2/24` | X | X | X | X | X
@@ -111,8 +111,8 @@ Hosts | `10.1.1.0/24` | `10.2.2.0/24` | `10.3.100.0/30` | `10.3.100.4/30` | `10.
 `client2.lab4.tp3` | X | `10.2.2.2/24` | X | X | X | X
 `router1.lab4.tp3` | X | X | X | `10.3.100.6/30` | `10.3.100.9/30` | X
 `router2.lab4.tp3` | X | X | `10.3.100.2/30` | `10.3.100.5/30` | X | X
-`router3.lab4.tp3` | X | X | X | X | `10.3.100.10/30` | `10.3.104.13/30`
-`router4.lab4.tp3` | `10.1.1.254/24` | `10.2.2.254/24` | `10.3.100.1/30` | X | X | `10.3.104.14/30`
+`router3.lab4.tp3` | X | X | X | X | `10.3.100.10/30` | `10.3.100.13/30`
+`router4.lab4.tp3` | `10.1.1.254/24` | `10.2.2.254/24` | `10.3.100.1/30` | X | X | `10.3.100.14/30`
 
 ```
 R1#show ip interface br
@@ -149,8 +149,19 @@ Routing Protocol is "ospf 1"
   Routing Information Sources:
     Gateway         Distance      Last Update
   Distance: (default is 110)
+
+R3#show ip ospf neighbor
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+4.4.4.4           1   FULL/DR         00:00:32    10.3.100.14     FastEthernet3/0
+1.1.1.1           1   FULL/DR         00:00:37    10.3.100.9      FastEthernet1/0
+
+R4#show ip ospf neighbor
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+3.3.3.3           1   FULL/BDR        00:00:30    10.3.100.13     FastEthernet3/0
+2.2.2.2           1   FULL/BDR        00:00:39    10.3.100.2      FastEthernet2/0
+
 ```
-- [x] OSPF paramétré sur les différents routeurs (ce sont les mêmes lignes sur les autres, avec juste les routes et l'ID qui changent).
+- [x] OSPF paramétré sur les différents routeurs (ce sont les mêmes lignes sur les autres, avec juste les adresses et l'ID qui changent).
 
 ```
 
@@ -190,11 +201,11 @@ Interface                  IP-Address      OK? Method Status                Prot
 FastEthernet0/0            unassigned      YES manual up                    up
 FastEthernet0/0.10         10.1.1.254      YES manual up                    up
 FastEthernet0/0.20         10.2.2.254      YES manual up                    up
-FastEthernet1/0            unassigned      YES NVRAM  administratively down down
-FastEthernet2/0            unassigned      YES NVRAM  administratively down down
-FastEthernet3/0            unassigned      YES NVRAM  administratively down down
+FastEthernet1/0            unassigned      YES manual up                    up
+FastEthernet2/0            10.3.100.1      YES manual up                    up
+FastEthernet3/0            10.3.100.14     YES manual up                    up
 ```
-Ici, on a paramétré deux zones pour que les deux VLANs puissent communiquer.
+Ici, on a paramétré **deux zones** pour que les deux VLANs puissent communiquer.
 ```
 [dams@client2 ~]$ ping -c 4 server1
 PING server1 (10.2.2.1) 56(84) bytes of data.
@@ -207,4 +218,4 @@ PING server1 (10.2.2.1) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 3005ms
 rtt min/avg/max/mdev = 9.337/13.212/15.328/2.322 ms
 ```
-- [x] Le Router On A Stick (ROAS) est paramétré, les clients peuvent joindre les serveurs et inversement!
+- [x] Le Router On A Stick (ROAS) est paramétré, les clients ***peuvent joindre les serveurs et inversement!***
