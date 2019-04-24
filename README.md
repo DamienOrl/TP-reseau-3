@@ -219,3 +219,24 @@ PING server1 (10.2.2.1) 56(84) bytes of data.
 rtt min/avg/max/mdev = 9.337/13.212/15.328/2.322 ms
 ```
 - [x] Le Router On A Stick (ROAS) est paramétré, les clients ***peuvent joindre les serveurs et inversement!***
+
+Plus qu'à paramétrer les routes sur les différentes machines et...
+```
+[dams@client2 ~]$ ping -c 4 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8 (8.8.8.8): icmp_seq=1 ttl=116 time=78.0 ms
+64 bytes from 8.8.8.8 (8.8.8.8): icmp_seq=2 ttl=116 time=79.6 ms
+64 bytes from 8.8.8.8 (8.8.8.8): icmp_seq=3 ttl=116 time=72.5 ms
+64 bytes from 8.8.8.8 (8.8.8.8): icmp_seq=4 ttl=116 time=97.3 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 72.579/81.885/97.315/9.290 ms
+```
+
+**Bingo!** En revanche, ce n'est pas très sécurisé, on a:
+- Des SPoF (Single Point of Failure) en `R4`, `R1` et `IOU1`.
+- Aucune redondance des liaisons; une ne tient plus, et l'infrastructure est fichue!
+- Aucune surveillance du trafic réseau.
+
+[A suivre...](https://github.com/DamienOrl/Tp-reseau-4-menu-1) <img src="http://www.sclance.com/pngs/to-be-continued-meme-png/./to_be_continued_meme_png_1389102.png" width="350" alt="*Insérer une référence à Jojo*" />
