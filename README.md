@@ -104,7 +104,7 @@ Il ressemble à ça: <img src="Captures/Infra finale.png" />
 ### Les différentes adresses IP:
 
 Hosts | `10.1.1.0/24` | `10.2.2.0/24` | `10.3.100.0/30` | `10.3.100.4/30` | `10.3.100.8/30` | `10.3.100.12/30`
---- | --- | --- | --- | --- | ---
+--- | --- | --- | --- | --- | --- | ---
 `server1.lab4.tp3` | `10.1.1.1/24` | X | X | X | X | X
 `server2.lab4.tp3` | `10.1.1.2/24` | X | X | X | X | X
 `client1.lab4.tp3` | X | `10.2.2.1/24` | X | X | X | X
