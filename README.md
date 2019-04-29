@@ -238,4 +238,4 @@ rtt min/avg/max/mdev = 72.579/81.885/97.315/9.290 ms
 - Aucune redondance des liaisons; une ne tient plus, et l'infrastructure est fichue!
 - Aucune surveillance du trafic réseau.
 
-[A suivre...](https://github.com/DamienOrl/Tp-reseau-4-menu-1) <img src="http://www.sclance.com/pngs/to-be-continued-meme-png/./to_be_continued_meme_png_1389102.png" width="350" alt="*Insérer une référence à Jojo*" />
+[A suivre...](https://github.com/DamienOrl/Tp-reseau-4-menu-1) <img src="https://i.kym-cdn.com/photos/images/newsfeed/001/444/743/e63.png" width="350" alt="*Insérer une référence à Jojo*" />
